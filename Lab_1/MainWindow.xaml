@@ -1,0 +1,41 @@
+﻿<Window x:Class="Lab_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_1"
+        mc:Ignorable="d"
+        Title="Lab_1" Height="450" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Введите значение x"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Введите значение y"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Введите значение z"/>
+
+        <TextBox x:Name="x_TextBox" Grid.Row="0" Grid.Column="1"/>
+        <TextBox x:Name="y_TextBox" Grid.Row="1" Grid.Column="1"/>
+        <TextBox x:Name="z_TextBox" Grid.Row="2" Grid.Column="1"/>
+
+        <Label Grid.ColumnSpan="2" Grid.Row="3"
+               HorizontalAlignment="Center"
+               Content="Результат выполнения программы:"/>
+
+        <TextBlock x:Name="Result_TextBlock" Grid.Row="4" Grid.ColumnSpan="2"/>
+
+        <Button Click="Button_Click" Grid.Row="5" Grid.ColumnSpan="2" Content="Выполнить"/>
+
+    </Grid>
+</Window>
