@@ -274,7 +274,5 @@ namespace Lab_4
 
             return "1";
         }
-
-
     }
 }
