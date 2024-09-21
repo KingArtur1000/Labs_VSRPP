@@ -1,0 +1,66 @@
+﻿<Window x:Class="Lab_5.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_5"
+        mc:Ignorable="d"
+        Title="Lab_5" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Часть добавления строки -->
+        <Label Grid.Row="0" Grid.Column="0"
+               Content="Введите строку:"
+               Margin="20 0 0 0"
+               FontSize="18"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"/>
+
+        <TextBox x:Name="String_TextBox" Grid.Row="1" Grid.Column="0"
+                 Style="{StaticResource TextBox_Input}"/>
+
+        <Button x:Name="AddString_Button" Content="Добавить строку"
+                Grid.Row="1" Grid.Column="1" FontSize="18"
+                Click="AddString_Button_Click"
+                Style="{StaticResource Button}"/>
+
+
+        <!-- Часть списка строк -->
+        <ListBox x:Name="String_ListBox"
+                 Grid.Row="2" Grid.Column="0"
+                 ScrollViewer.CanContentScroll="True"
+                 FontSize="18" Margin="10">
+        </ListBox>
+
+        <Button x:Name="DeleteString_Button"
+                Grid.Column="1" Grid.Row="2"
+                Content="Удалить строку"
+                FontSize="18" Click="DeleteString_Button_Click"
+                Style="{StaticResource Button}"/>
+        
+        
+        <!-- Часть информации о строке -->
+        <Label Content="Самая короткая строка:"
+               Grid.Row="3" Grid.Column="0" FontSize="18"
+               VerticalAlignment="Center" Margin="20 0 0 0"/>
+
+        <TextBlock x:Name="StringInfo_TextBlock" FontSize="18"
+                   Grid.Row="4" Grid.Column="0"
+                   Margin="20 0 20 0"/>
+
+        <Button x:Name="Exit_Button" Content="Закрыть программу"
+                Grid.Row="4" Grid.Column="1" FontSize="18"
+                Style="{StaticResource Button}"/>
+    </Grid>
+</Window>
