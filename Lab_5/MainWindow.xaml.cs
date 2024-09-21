@@ -43,8 +43,6 @@ namespace Lab_5
         }
 
 
-
-
         private string FindString()
         {
             ItemCollection textBlocks = String_ListBox.Items;
