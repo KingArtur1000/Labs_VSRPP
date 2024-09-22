@@ -1,0 +1,107 @@
+﻿<Window x:Class="Lab_6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_6"
+        mc:Ignorable="d"
+        Title="Lab_6" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Название товара:"
+                   Grid.Row="0" Grid.Column="0"
+                   Style="{StaticResource Label_Input}"/>
+
+            <Label Content="Кол-во товара:"
+                   Grid.Row="1" Grid.Column="0"
+                   Style="{StaticResource Label_Input}"/>
+            
+            <Label Content="Цена за 1 шт. товара:"
+                   Grid.Row="2" Grid.Column="0"
+                   Style="{StaticResource Label_Input}"/>
+
+            <Label Content="Дата добавления:"
+                   Grid.Row="3" Grid.Column="0"
+                   Style="{StaticResource Label_Input}"/>
+
+            <TextBox x:Name="Name_TextBox"
+                     Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                     Style="{StaticResource TextBox_Input}"/>
+
+            <TextBox x:Name="Amount_TextBox"
+                     Grid.Row="1" Grid.Column="1"
+                     Style="{StaticResource TextBox_Input}"/>
+
+            <TextBox x:Name="Price_TextBox"
+                     Grid.Row="2" Grid.Column="1"
+                     Style="{StaticResource TextBox_Input}"/>
+
+            <TextBox x:Name="Date_TextBox"
+                     Grid.Row="3" Grid.Column="1"
+                     Style="{StaticResource TextBox_Input}"/>
+
+            <Button Content="Добавить запись"
+                    x:Name="Add_Button"
+                    Grid.Row="1" Grid.Column="2"
+                    Click="Add_Button_Click"
+                    Style="{StaticResource Button}"/>
+
+            <Button Content="Удалить запись"
+                    x:Name="Delete_Button"
+                    Grid.Row="2" Grid.Column="2"
+                    Click="Delete_Button_Click"
+                    Style="{StaticResource Button}"/>
+
+            <Button Content="Сохранить изменения"
+                    x:Name="Save_Button"
+                    Grid.Row="3" Grid.Column="2"
+                    Click="Save_Button_Click"
+                    Style="{StaticResource Button}"/>
+        </Grid>
+
+        
+        <Grid Grid.Row="1">
+            <ListBox x:Name="Products_ListBox"
+                     Margin="15"
+                     FontSize="16"
+                     Loaded="Products_ListBox_Loaded">
+            </ListBox>
+
+        </Grid>
+
+        
+        <Grid Grid.Row="2">
+            <Button x:Name="Sort_Button"
+                    Click="Sort_Button_Click"
+                    Style="{StaticResource Button}">
+                <Button.Content>
+                    <TextBlock FontSize="14" HorizontalAlignment="Center">
+                        <Run Text="Вывести в алфавитном порядке список товаров,"/>
+                        <LineBreak/>
+                        <Run Text="хранящихся больше месяца, стоимость которых превышает 1000000 руб. "/>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+
+
+        </Grid>
+    </Grid>
+</Window>
