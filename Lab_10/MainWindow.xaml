@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_10"
         mc:Ignorable="d"
-        Title="Lab_10" Height="450" Width="800">
+        Title="Lab_10" Height="450" Width="800"
+        Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -53,7 +54,7 @@
         <Button x:Name="Save_Button"
                 Grid.Column="1" Grid.Row="3"
                 Content="Сохранить данные"
-                FontSize="18" Click="DeleteString_Button_Click"
+                FontSize="18" Click="Save_Button_Click"
                 Style="{StaticResource Button}"/>
 
 
@@ -68,6 +69,7 @@
 
         <Button x:Name="Exit_Button" Content="Закрыть программу"
                 Grid.Row="5" Grid.Column="1" FontSize="18"
+                Click="Exit_Button_Click"
                 Style="{StaticResource Button}"/>
     </Grid>
 </Window>

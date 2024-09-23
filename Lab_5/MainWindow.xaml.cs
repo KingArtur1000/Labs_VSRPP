@@ -69,5 +69,10 @@ namespace Lab_5
 
             return textBlock_temp.Text;
         }
+
+        private void Exit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
