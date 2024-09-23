@@ -2,7 +2,7 @@
 using System.Windows;
 
 
-namespace Lab_2
+namespace Lab_7
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -43,11 +43,11 @@ namespace Lab_2
         {
             int choice = 0;
 
-            if ((bool)rBtn1.IsChecked)  choice = 1;
+            if ((bool)rBtn1.IsChecked) choice = 1;
             else if ((bool)rBtn2.IsChecked) choice = 2;
             else if ((bool)rBtn3.IsChecked) choice = 3;
 
-            
+
             try
             {
                 double x = double.Parse(x_TextBox.Text);
@@ -57,15 +57,15 @@ namespace Lab_2
 
                 if (x / y > 0)
                 {
-                    result = Math.Log(fx) + Math.Pow( Math.Pow(fx, 2) + y, 3 );
+                    result = Math.Log(fx) + Math.Pow(Math.Pow(fx, 2) + y, 3);
                 }
                 else if (x / y < 0)
                 {
-                    result = Math.Log( Math.Abs( fx / y ) ) + Math.Pow( fx + y, 3 );
+                    result = Math.Log(Math.Abs(fx / y)) + Math.Pow(fx + y, 3);
                 }
                 else if (x == 0)
                 {
-                    result = Math.Pow( Math.Pow( fx, 2 ) + y, 3 );
+                    result = Math.Pow(Math.Pow(fx, 2) + y, 3);
                 }
 
                 Result_TextBlock.Text = "\tЛабораторная работа №2 Борсук-Дмитриев (Вариант 2)\n";
