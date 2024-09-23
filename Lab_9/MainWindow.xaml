@@ -1,0 +1,95 @@
+﻿<Window x:Class="Lab_9.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hw="http://schemas.hpod9.com/haley/wpf"
+        xmlns:hm="http://schemas.hpod9.com/haley/mvvm"
+        xmlns:local="clr-namespace:Lab_9"
+        mc:Ignorable="d"
+        Title="Lab_9" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0"
+               Content="Введите значение x -->"
+               Style="{StaticResource Label_Input}"/>
+        <Label Grid.Row="1" Grid.Column="0"
+               Content="Введите значение y -->"
+               Style="{StaticResource Label_Input}"/>
+
+        <TextBox x:Name="x_TextBox"
+                 Grid.Row="0" Grid.Column="1"
+                 Background="{Binding ElementName=x_ClrPicker, Path=SelectedBrush}"
+                 Style="{StaticResource TextBox_Input}"/>
+        <TextBox x:Name="y_TextBox"
+                 Grid.Row="1" Grid.Column="1"
+                 Background="{Binding ElementName=y_ClrPicker, Path=SelectedBrush}"
+                 Style="{StaticResource TextBox_Input}"/>
+
+
+        <hw:ColorPickerButton x:Name="x_ClrPicker"
+                              Grid.Row="0" Grid.Column="2"
+                              Margin="5 10 5 10"/>
+
+        <hw:ColorPickerButton x:Name="y_ClrPicker"
+                              Grid.Row="1" Grid.Column="2"
+                              Margin="5 10 5 10"/>
+
+        <hw:ColorPickerButton x:Name="ResultTextBlock_ClrPicker"
+                              Grid.Row="4" Grid.Column="3"
+                              MaxHeight="35"
+                              Margin="5"/>
+        
+        <hw:ColorPickerButton x:Name="ResultButton_ClrPicker"
+                              Grid.Row="5" Grid.Column="3"
+                              Margin="5 10 5 10"/>
+
+
+        <Label Grid.Row="0" Grid.Column="3"
+               Content="Выберите f(x)"
+               FontSize="16"
+               Style="{StaticResource Label_Result}"/>
+        <StackPanel Grid.Row="1" Grid.Column="3"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <RadioButton x:Name="rBtn1" GroupName="functions" Content="sh(x)" IsChecked="True" FontSize="14"/>
+            <RadioButton x:Name="rBtn2" GroupName="functions" Content="x^2" FontSize="14"/>
+            <RadioButton x:Name="rBtn3" GroupName="functions" Content="e^x" FontSize="14"/>
+        </StackPanel>
+
+        <Label Grid.ColumnSpan="3" Grid.Row="3"
+               Content="Результат выполнения программы:"
+               FontSize="16"
+               Style="{StaticResource Label_Result}"/>
+
+        <TextBlock x:Name="Result_TextBlock"
+                   Grid.Row="4" Grid.ColumnSpan="3"
+                   FontSize="14"
+                   Margin="15"
+                   Background="{Binding ElementName=ResultTextBlock_ClrPicker, Path=SelectedBrush}"/>
+
+        <Button Click="Button_Click"
+                Grid.Row="5" Grid.ColumnSpan="3"
+                FontSize="16"
+                Content="Выполнить"
+                Background="{Binding ElementName=ResultButton_ClrPicker, Path=SelectedBrush}"
+                Style="{StaticResource Button}"/>
+
+
+    </Grid>
+</Window>

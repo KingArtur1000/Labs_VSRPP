@@ -13,16 +13,16 @@ namespace Lab_3
         {
             InitializeComponent();
             n_TextBox.TextChanged += N_TextBox_TextChanged;
-            Calculate_N();
+            Calculate_H();
         }
 
         private void N_TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            Calculate_N();
+            Calculate_H();
         }
 
 
-        private void Calculate_N()
+        private void Calculate_H()
         {
             try
             {

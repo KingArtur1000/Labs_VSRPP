@@ -20,9 +20,14 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        
 
-        <Label Grid.Row="0" Grid.Column="0" Content="Введите значение x"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Введите значение y"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Введите значение x -->"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Right"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Введите значение y -->"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Right"/>
 
         <TextBox x:Name="x_TextBox" Grid.Row="0" Grid.Column="1"/>
         <TextBox x:Name="y_TextBox" Grid.Row="1" Grid.Column="1"/>
