@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using OxyPlot;
+using OxyPlot.Axes;
 using OxyPlot.Series;
 
 
@@ -39,12 +40,9 @@ namespace Lab_8
 
                 double resultFinal = PowResultNumerator / resultDenominator - (resultExp * resultRight);
 
-                PlotModel MyModel = new PlotModel { Title = "Lab_8 График" };
-                MyModel.Series.Add(new FunctionSeries(Math.Exp, Math.Abs(x - y), (x + h) - y, 0.1, "e^(x-y)"));
-                MyModel.Series.Add(new FunctionSeries(Math.Tan, Math.Pow(z, 2), Math.Pow((z + h), 2), 0.1, "tg^2(z)"));
-                //MyModel.Series.Add(new FunctionSeries(Math.Sqrt, Math.Pow(Math.Abs(x-y), 2), Math.Pow(Math.Abs(x + h - y), 2), 0.1, "|x-y|^2"));
 
-                Graphic_PlotView.Model = MyModel;
+                CreateGraphic(x, y, z, h);
+
 
                 Result_TextBlock.Text = "\tЛабораторная работа №8 Борсук-Дмитриев (Вариант 2)\n";
                 Result_TextBlock.Text += "X = " + x.ToString() + '\n';
@@ -58,6 +56,41 @@ namespace Lab_8
                 MessageBox.Show(ex.Message);
                 return;
             }
+        }
+
+
+        private void CreateGraphic(double x, double y, double z, double h)
+        {
+            PlotModel MyModel = new PlotModel { Title = "Lab_8 График" };
+
+            // График 1: e^(x-y)
+            FunctionSeries expSeries = new FunctionSeries(Math.Exp, Math.Abs(x - y), (x + h) - y, 0.1, "e^(x-y)")
+            {
+                Color = OxyColors.Red
+            };
+            MyModel.Series.Add(expSeries); 
+
+
+            // График 2: tg^2(z)
+            FunctionSeries tanSquaredSeries = new FunctionSeries(Math.Tan, Math.Pow(z, 2), Math.Pow((z + h), 2), 0.1, "tg^2(z)")
+            {
+                Color = OxyColors.Blue
+            };
+            MyModel.Series.Add(tanSquaredSeries);
+
+
+            MyModel.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, Title = "x" });
+            MyModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Title = "y" });
+
+
+            // Добавляем легенду
+            MyModel.Legends.Add(new OxyPlot.Legends.Legend
+            {
+                LegendPosition = OxyPlot.Legends.LegendPosition.RightTop,
+                LegendPlacement = OxyPlot.Legends.LegendPlacement.Inside
+            });
+
+            Graphic_PlotView.Model = MyModel;
         }
     }
 }
