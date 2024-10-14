@@ -5,10 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_7"
         mc:Ignorable="d"
-        Title="Lab_7" Height="450" Width="800">
+        Title="Lab_3" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -20,50 +19,54 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0"
-               Content="Введите значение x -->"
+
+        <!-- Область для ввода -->
+        <Label Grid.Row="0" Grid.Column="0" Content="Введите значение x1 -->"
                Style="{StaticResource Label_Input}"/>
-        <Label Grid.Row="1" Grid.Column="0"
-               Content="Введите значение y -->"
+        <Label Grid.Row="1" Grid.Column="0" Content="Введите значение x2 -->"
                Style="{StaticResource Label_Input}"/>
 
-        <TextBox x:Name="x_TextBox"
-                 Grid.Row="0" Grid.Column="1"
+        <TextBox x:Name="x1_TextBox" Grid.Row="0" Grid.Column="1" Text="0,1"
                  Style="{StaticResource TextBox_Input}"/>
-        <TextBox x:Name="y_TextBox"
-                 Grid.Row="1" Grid.Column="1"
+        <TextBox x:Name="x2_TextBox" Grid.Row="1" Grid.Column="1" Text="1"
                  Style="{StaticResource TextBox_Input}"/>
 
-        <Label Grid.Row="0" Grid.Column="2"
-               Content="Выберите f(x)"
-               FontSize="16"
-               Style="{StaticResource Label_Result}"/>
-        <StackPanel Grid.Row="1" Grid.Column="2"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-            <RadioButton x:Name="rBtn1" GroupName="functions" Content="sh(x)" IsChecked="True" FontSize="14"/>
-            <RadioButton x:Name="rBtn2" GroupName="functions" Content="x^2" FontSize="14"/>
-            <RadioButton x:Name="rBtn3" GroupName="functions" Content="e^x" FontSize="14"/>
-        </StackPanel>
+        <Label Grid.Row="0" Grid.Column="2" Content="Введите значение N -->"
+               Style="{StaticResource Label_Input}"/>
+        <Label Grid.Row="1" Grid.Column="2" Content="Значение H при заданном N ="
+               Style="{StaticResource Label_Input}"/>
 
-        <Label Grid.ColumnSpan="3" Grid.Row="3"
+        <TextBox x:Name="n_TextBox" Grid.Row="0" Grid.Column="3" Text="10"
+                 Style="{StaticResource TextBox_Input}"/>
+        <TextBox x:Name="h_TextBox" Grid.Row="1" Grid.Column="3"
+                 Style="{StaticResource TextBox_Input}"/>
+
+
+        <!-- Область вывода результата -->
+        <Label Grid.ColumnSpan="2" Grid.Row="2"
                Content="Результат выполнения программы:"
-               FontSize="16"
                Style="{StaticResource Label_Result}"/>
 
-        <TextBlock x:Name="Result_TextBlock"
-                   Grid.Row="4" Grid.ColumnSpan="3"
-                   FontSize="14"
-                   Margin="15"/>
+        <ComboBox x:Name="Functions_ComboBox"
+                  Grid.Row="2" Grid.Column="3"
+                  Margin="15">
+            <ComboBoxItem Content="x^2" IsSelected="True"/>
+            <ComboBoxItem Content="sin(x)"/>
+            <ComboBoxItem Content="cos(x)"/>
+            <ComboBoxItem Content="sqrt(x)"/>
+            <ComboBoxItem Content="exp(x)"/>
+        </ComboBox>
 
-        <Button Click="Button_Click"
-                Grid.Row="5" Grid.ColumnSpan="3"
-                FontSize="16"
-                Content="Выполнить"
-                Style="{StaticResource Button}"/>
-        
-        
+        <ScrollViewer Grid.Row="3" Grid.ColumnSpan="4"
+                      Style="{StaticResource ScrollViewer_Result}">
+            <TextBlock x:Name="Result_TextBlock"/>
+        </ScrollViewer>
+
+        <Button Click="Button_Click" Grid.Row="5" Grid.Column="1"
+                Grid.ColumnSpan="2" Content="Выполнить"
+                Style="{StaticResource Button_Result}"/>
     </Grid>
 </Window>

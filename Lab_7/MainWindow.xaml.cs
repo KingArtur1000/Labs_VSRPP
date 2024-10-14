@@ -12,71 +12,100 @@ namespace Lab_7
         public MainWindow()
         {
             InitializeComponent();
+            n_TextBox.TextChanged += N_TextBox_TextChanged;
+            Calculate_H();
+        }
+
+        private enum FUNCTIONS
+        {
+            X_2 = 0,
+            SIN,
+            COS,
+            SQRT,
+            EXP
+        }
+
+        private void N_TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            Calculate_H();
         }
 
 
-        private enum Functions
+        private void Calculate_H()
         {
-            SH = 1,
-            X_SQUARE,
-            EXP_X
-        }
-
-
-        private double CalculateFX(int choice, double x)
-        {
-            switch ((Functions)choice)
+            try
             {
-                case Functions.SH:
-                    return Math.Sinh(x);
-                case Functions.X_SQUARE:
-                    return Math.Pow(x, 2);
-                case Functions.EXP_X:
-                    return Math.Pow(Math.E, 2);
-                default:
-                    return 1;
+                double x1 = double.Parse(x1_TextBox.Text);
+                double x2 = double.Parse(x2_TextBox.Text);
+                double n = double.Parse(n_TextBox.Text);
+                double h = (x2 - x1) / n;
+
+                h_TextBox.Text = h.ToString();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
+
+
+        private static double Factorial(double x)
+        {
+            return (x == 0) ? 1 : x * Factorial(x - 1);
         }
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int choice = 0;
-
-            if ((bool)rBtn1.IsChecked) choice = 1;
-            else if ((bool)rBtn2.IsChecked) choice = 2;
-            else if ((bool)rBtn3.IsChecked) choice = 3;
-
-
             try
             {
-                double x = double.Parse(x_TextBox.Text);
-                double y = double.Parse(y_TextBox.Text);
-                double fx = CalculateFX(choice, x);
-                double result = 0;
+                double x1 = double.Parse(x1_TextBox.Text);
+                double x2 = double.Parse(x2_TextBox.Text);
+                double n = double.Parse(n_TextBox.Text);
+                double h = double.Parse(h_TextBox.Text);
 
-                if (x / y > 0)
+                Result_TextBlock.Text = "\tЛабораторная работа №3 Борсук-Дмитриев (Вариант 2)\n";
+                Result_TextBlock.Text += "X1 = " + x1.ToString() + '\n';
+                Result_TextBlock.Text += "X2 = " + x2.ToString() + '\n';
+                Result_TextBlock.Text += "N = " + n.ToString() + '\n';
+                Result_TextBlock.Text += "H = " + h.ToString() + "\n\n";
+
+                while (x1 <= x2)
                 {
-                    result = Math.Log(fx) + Math.Pow(Math.Pow(fx, 2) + y, 3);
-                }
-                else if (x / y < 0)
-                {
-                    result = Math.Log(Math.Abs(fx / y)) + Math.Pow(fx + y, 3);
-                }
-                else if (x == 0)
-                {
-                    result = Math.Pow(Math.Pow(fx, 2) + y, 3);
+                    double s = 0;
+                    for (int i = 0; i <= n; i++)
+                    {
+                        s += Math.Pow(x1, 2 * i) / Factorial(2 * i);
+                    }
+
+                    double y = 0;
+
+                    switch ((FUNCTIONS)Functions_ComboBox.SelectedIndex)
+                    {
+                        case FUNCTIONS.X_2: y = Functions.Function1(x1); break;
+                        case FUNCTIONS.SIN: y = Functions.Function2(x1); break;
+                        case FUNCTIONS.COS: y = Functions.Function3(x1); break;
+                        case FUNCTIONS.SQRT: y = Functions.Function4(x1); break;
+                        case FUNCTIONS.EXP: y = Functions.Function5(x1); break;
+                    }
+
+                    Result_TextBlock.Text += "\tПри x = " + x1.ToString() + ":\n";
+                    Result_TextBlock.Text += "\ty(x) = " + y.ToString() + "\n";
+
+                    x1 += h;
                 }
 
-                Result_TextBlock.Text = "\tЛабораторная работа №2 Борсук-Дмитриев (Вариант 2)\n";
-                Result_TextBlock.Text += "X = " + x.ToString() + '\n';
-                Result_TextBlock.Text += "Y = " + y.ToString() + '\n';
-                Result_TextBlock.Text += "\tРезультат  b = " + result.ToString() + '\n';
+
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
+
+
         }
     }
 }

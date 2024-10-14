@@ -8,14 +8,13 @@
         <Style x:Key="Label_Input" TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="FontSize" Value="16"/>
         </Style>
 
         <Style x:Key="TextBox_Input" TargetType="TextBox">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
         </Style>
+
 
 
         <!-- Область результата -->
@@ -28,8 +27,8 @@
             <Setter Property="Margin" Value="20"/>
         </Style>
 
-        <Style x:Key="Button" TargetType="Button">
-            <Setter Property="Margin" Value="5"/>
+        <Style x:Key="Button_Result" TargetType="Button">
+            <Setter Property="Margin" Value="10"/>
         </Style>
     </Application.Resources>
 </Application>
