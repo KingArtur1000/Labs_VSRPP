@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -15,6 +17,10 @@ namespace Lab_11
         {
             InitializeComponent();
         }
+
+        private Point startPoint;
+        private UIElement currentShape;
+        private string currentTool = "Line";
 
 
         private void Circle_Button_Click(object sender, RoutedEventArgs e)
@@ -148,6 +154,87 @@ namespace Lab_11
             Line_Grid.Children.Add(path);
 
             MessageBox.Show("Галочка нарисована! :)");
+        }
+
+
+
+
+
+        private void DrawingCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            startPoint = e.GetPosition(drawingCanvas);
+            switch (currentTool)
+            {
+                case "Линия":
+                    currentShape = new Line()
+                    {
+                        Stroke = Brushes.Black,
+                        X1 = startPoint.X,
+                        Y1 = startPoint.Y,
+                        X2 = startPoint.X,
+                        Y2 = startPoint.Y
+                    };
+                    break;
+                case "Прямоугольник":
+                    currentShape = new Rectangle()
+                    {
+                        StrokeThickness = 2,
+                        Stroke = Brushes.Red,
+                        Fill = Brushes.Blue
+                    };
+                    break;
+                case "Эллипс":
+                    currentShape = new Ellipse()
+                    {
+                        Fill = Brushes.Purple,
+                        StrokeThickness = 2,
+                        Stroke = Brushes.Orange
+                    };
+                    break;
+            }
+            drawingCanvas.Children.Add(currentShape);
+        }
+
+        private void DrawingCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            currentShape = null;
+        }
+
+        private void DrawingCanvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed && currentShape != null)
+            {
+                Point currentPoint = e.GetPosition(drawingCanvas);
+                switch (currentTool)
+                {
+                    case "Линия":
+                        Line line = (Line)currentShape;
+                        line.X2 = currentPoint.X;
+                        line.Y2 = currentPoint.Y;
+                        break;
+                    case "Прямоугольник":
+                    case "Эллипс":
+                        double width = Math.Abs(currentPoint.X - startPoint.X);
+                        double height = Math.Abs(currentPoint.Y - startPoint.Y);
+                        double left = Math.Min(startPoint.X, currentPoint.X);
+                        double top = Math.Min(startPoint.Y, currentPoint.Y);
+                        Shape shape = (Shape)currentShape;
+                        shape.Width = width;
+                        shape.Height = height;
+                        Canvas.SetLeft(shape, left);
+                        Canvas.SetTop(shape, top);
+                        break;
+                }
+            }
+        }
+
+        private void Tool_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton radioButton = sender as RadioButton;
+            if (radioButton != null)
+            {
+                currentTool = radioButton.Content.ToString();
+            }
         }
     }
 }
