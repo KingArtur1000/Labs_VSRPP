@@ -9,6 +9,10 @@
     <TabControl FontSize="16">
         <TabItem Header="Task_1">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="121*"/>
+                    <ColumnDefinition Width="668*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="5*"/>
@@ -17,11 +21,11 @@
                 <TextBlock Text="Растровое изображение:"
                            FontSize="20" Grid.Row="0"
                            VerticalAlignment="Center"
-                           Margin="20 0 0 0"/>
+                           Margin="20,19,0,18.8" Grid.ColumnSpan="2"/>
 
                 <Image Grid.Row="1"
                        Source="BELAZ_LOGO.png"
-                       Margin="50"/>
+                       Margin="50,50.2" Grid.ColumnSpan="2"/>
             </Grid>
         </TabItem>
         <TabItem Header="Task_2">
@@ -44,7 +48,7 @@
                            VerticalAlignment="Center"
                            Margin="20 0 0 0"/>
 
-                
+
                 <Button Content="Круг"
                         x:Name="Circle_Button"
                         Grid.Row="1" Grid.Column="0"
